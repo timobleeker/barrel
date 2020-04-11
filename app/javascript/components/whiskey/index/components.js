@@ -4,12 +4,12 @@ import { Grid, Card, CardContent, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(2)
   },
   name: {
-    fontSize: 14,
+    fontSize: 14
   },
-  description: {},
+  description: {}
 }))
 
 export const WhiskeyCard = ({ name, description }) => {

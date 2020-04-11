@@ -1,4 +1,4 @@
-module.exports = function(api) {
+module.exports = function (api) {
   var validEnv = ['development', 'test', 'production']
   var currentEnv = api.env()
   var isDevelopmentEnv = api.env('development')
@@ -87,13 +87,13 @@ module.exports = function(api) {
         {
           '@material-ui/core': {
             // Use "transform: '@material-ui/core/${member}'," if your bundler does not support ES modules
-            'transform': '@material-ui/core/esm/${member}',
-            'preventFullImport': true
+            transform: '@material-ui/core/esm/${member}',
+            preventFullImport: true
           },
           '@material-ui/icons': {
             // Use "transform: '@material-ui/icons/${member}'," if your bundler does not support ES modules
-            'transform': '@material-ui/icons/esm/${member}',
-            'preventFullImport': true
+            transform: '@material-ui/icons/esm/${member}',
+            preventFullImport: true
           }
         }
       ]
