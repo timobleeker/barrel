@@ -2,7 +2,8 @@
   "name": "barrel",
   "private": true,
   "scripts": {
-    "test": "jest",
+    "test": "yarn lint && yarn jest",
+    "lint": "eslint .",
     "format": "prettier 'app/javascript/**/*.{js,jsx,css,scss}' --write"
   },
   "dependencies": {
@@ -14,7 +15,8 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "prettier": "^2.0.4",
+    "es6-promise": "^4.2.8",
+    "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -24,12 +26,22 @@
   "version": "0.1.0",
   "devDependencies": {
     "@babel/preset-env": "^7.9.5",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^25.3.0",
     "babel-plugin-transform-imports": "^2.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.0",
+    "fetch-mock-jest": "^1.2.5",
+    "flush-promises": "^1.0.2",
     "jest": "^25.3.0",
     "jest-enzyme": "^7.1.2",
+    "prettier": "^2.0.4",
     "react-test-renderer": "^16.13.1",
     "webpack-dev-server": "^3.10.3"
   }

@@ -1,0 +1,7 @@
+app/assets/javascripts
+coverage
+vendor
+public/assets
+public/packs-test
+public/packs
+node_modules
