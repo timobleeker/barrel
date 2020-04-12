@@ -15,11 +15,14 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "date-fns": "^2.12.0",
     "es6-promise": "^4.2.8",
+    "humps": "^2.0.1",
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2"
   },
   "version": "0.1.0",
   "devDependencies": {

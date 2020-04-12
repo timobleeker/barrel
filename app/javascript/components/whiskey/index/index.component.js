@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import { Grid } from '@material-ui/core'
 
+import BaseLayout from '../../layouts/base'
 import { WhiskeyCard } from './components'
 import getApi from '../../../api'
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    paddingTop: theme.spacing(3)
-  }
-}))
-
 const Index = () => {
-  const classes = useStyles()
   const [whiskeys, setWhiskeys] = useState([])
   const api = getApi()
 
@@ -31,11 +24,13 @@ const Index = () => {
   }, [])
 
   return (
-    <Grid container spacing={3} className={classes.container}>
-      {whiskeys.map((whiskey, index) => (
-        <WhiskeyCard key={index} {...whiskey} />
-      ))}
-    </Grid>
+    <BaseLayout>
+      <Grid container spacing={3}>
+        {whiskeys.map((whiskey, index) => (
+          <WhiskeyCard key={index} {...whiskey} />
+        ))}
+      </Grid>
+    </BaseLayout>
   )
 }
 
