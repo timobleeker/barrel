@@ -14,8 +14,11 @@ import {
 import { MoreVert } from '@material-ui/icons'
 
 const useStyles = makeStyles(() => ({
-  name: {
+  title: {
     fontSize: 18
+  },
+  content: {
+    width: '90%'
   }
 }))
 
@@ -25,7 +28,8 @@ export const WhiskeyCard = ({ id, name, description }) => {
     <Grid item xs={12} sm={6} md={4}>
       <Card>
         <CardHeader
-          titleTypographyProps={{ className: classes.name }}
+          classes={{ content: classes.content, title: classes.title }}
+          titleTypographyProps={{ noWrap: true }}
           action={
             <IconButton disabled>
               <MoreVert />
@@ -34,7 +38,7 @@ export const WhiskeyCard = ({ id, name, description }) => {
           title={name}
         />
         <CardContent>
-          <Typography>{description}</Typography>
+          <Typography noWrap>{description}</Typography>
         </CardContent>
         <CardActions>
           <Button
