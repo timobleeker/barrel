@@ -9,12 +9,12 @@ import mockApi from '../../../tests/helpers/api-mock'
 import * as getApi from '../../../api'
 
 describe('Whiskey Index', () => {
-  beforeEach(() => {
-    jest.spyOn(getApi, 'default').mockImplementation(() => mockApi)
-  })
+  let wrapper
 
-  it('renders', async () => {
-    const wrapper = mount(
+  beforeEach(async () => {
+    jest.spyOn(getApi, 'default').mockImplementation(() => mockApi)
+
+    wrapper = mount(
       <MemoryRouter initialEntries={['/']}>
         <Route path="/">
           <Index />
@@ -26,8 +26,24 @@ describe('Whiskey Index', () => {
       await flushPromises()
     })
     wrapper.update()
+  })
 
+  it('renders', () => {
     expect(mockApi.getWhiskeyIndex).toHaveBeenCalled()
     expect(wrapper.find('WhiskeyCard').length).toEqual(2)
+  })
+
+  it('can delete entries', async () => {
+    mockApi.getWhiskeyIndex.mockClear()
+
+    const card = wrapper.find('WhiskeyCard').at(0)
+
+    await act(async () => {
+      card.props().onDelete()
+      await flushPromises()
+    })
+
+    expect(mockApi.deleteWhiskey).toHaveBeenCalled()
+    expect(mockApi.getWhiskeyIndex).toHaveBeenCalledTimes(1)
   })
 })

@@ -46,4 +46,19 @@ describe('apiCore', () => {
       status: 201
     })
   })
+
+  it('performs a delete', async () => {
+    fetchMock.delete('http://localhost:3000/api/test/url/1', {
+      status: 204
+    })
+
+    const resp = await api.delete('/test/url/1')
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      'http://localhost:3000/api/test/url/1',
+      expect.objectContaining({ method: 'DELETE' })
+    )
+
+    expect(resp.status).toEqual(204)
+  })
 })

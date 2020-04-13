@@ -6,7 +6,8 @@ import apiCore from './api-core'
 describe('api', () => {
   const getMock = jest.fn()
   const postMock = jest.fn()
-  apiCore.mockReturnValue({ get: getMock, post: postMock })
+  const deleteMock = jest.fn()
+  apiCore.mockReturnValue({ get: getMock, post: postMock, delete: deleteMock })
   const api = getApi()
 
   it('calls the whiskey index endpoint', () => {
@@ -25,5 +26,10 @@ describe('api', () => {
     expect(postMock).toHaveBeenCalledWith('/whiskeys', {
       body: JSON.stringify({ data: { name: 'New Whiskey' } })
     })
+  })
+
+  it('calls the whiskey delete endpoint', () => {
+    api.deleteWhiskey(4)
+    expect(deleteMock).toHaveBeenCalledWith('/whiskeys/4')
   })
 })

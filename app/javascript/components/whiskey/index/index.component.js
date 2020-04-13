@@ -9,11 +9,20 @@ const Index = () => {
   const [whiskeys, setWhiskeys] = useState([])
   const api = getApi()
 
-  async function fetchData() {
+  const fetchData = async () => {
     const resp = await api.getWhiskeyIndex()
     if (resp.ok) {
       const { data } = await resp.json()
       setWhiskeys(data)
+    } else {
+      // TODO handle errors
+    }
+  }
+
+  const handleDelete = async (id) => {
+    const resp = await api.deleteWhiskey(id)
+    if (resp.ok) {
+      fetchData()
     } else {
       // TODO handle errors
     }
@@ -27,7 +36,11 @@ const Index = () => {
     <BaseLayout>
       <Grid container spacing={3}>
         {whiskeys.map((whiskey, index) => (
-          <WhiskeyCard key={index} {...whiskey} />
+          <WhiskeyCard
+            key={index}
+            {...whiskey}
+            onDelete={() => handleDelete(whiskey.id)}
+          />
         ))}
       </Grid>
     </BaseLayout>
