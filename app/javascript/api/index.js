@@ -11,6 +11,9 @@ export default function getApi() {
     },
     getWhiskey(id) {
       return apiCore.get(`${whiskeyEndpoint}/${id}`)
+    },
+    createWhiskey(params) {
+      return apiCore.post(whiskeyEndpoint, { body: JSON.stringify(params) })
     }
   }
 }

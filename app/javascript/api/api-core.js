@@ -13,6 +13,9 @@ export default function getApiCore() {
   return {
     get(path, options = {}) {
       return fetch(getUrl(path), getOptions(options, 'GET'))
+    },
+    post(path, options = {}) {
+      return fetch(getUrl(path), getOptions(options, 'POST'))
     }
   }
 }
