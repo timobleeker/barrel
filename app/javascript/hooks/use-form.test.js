@@ -42,6 +42,6 @@ describe('Hooks: useForm', () => {
     const callbackSpy = jest.fn()
     const wrapper = mount(<TestComponent callbackSpy={callbackSpy} />)
     wrapper.find('#my-form').simulate('submit')
-    expect(callbackSpy).toHaveBeenCalledTimes(1)
+    expect(callbackSpy).toHaveBeenCalledWith({ myInput: '' })
   })
 })

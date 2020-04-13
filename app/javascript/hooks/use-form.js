@@ -5,7 +5,7 @@ const useForm = (initialState, callback) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    callback()
+    callback(inputs)
   }
 
   const handleChange = (e) => {

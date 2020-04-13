@@ -26,29 +26,6 @@ describe('New whiskey form', () => {
     )
   })
 
-  it('submits the form', () => {
-    let nameInput = wrapper.find('input[name="name"]')
-    nameInput.simulate('change', {
-      target: { name: 'name', value: 'New Name' }
-    })
-
-    wrapper.find('textarea[name="description"]').simulate('change', {
-      target: { name: 'description', value: 'New Description' }
-    })
-
-    nameInput = wrapper.find('input[name="name"]')
-    expect(nameInput.prop('value')).toEqual('New Name')
-
-    wrapper.find('button[type="submit"]').simulate('submit')
-
-    expect(mockApi.createWhiskey).toHaveBeenCalledWith({
-      data: {
-        name: 'New Name',
-        description: 'New Description'
-      }
-    })
-  })
-
   it('redirects to newly created whiskey', async () => {
     await act(async () => {
       wrapper.find('button[type="submit"]').simulate('submit')
