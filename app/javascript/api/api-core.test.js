@@ -47,6 +47,31 @@ describe('apiCore', () => {
     })
   })
 
+  it('performs a put', async () => {
+    fetchMock.put('http://localhost:3000/api/test/url', {
+      status: 200,
+      data: { sample: 'response' }
+    })
+
+    const resp = await api.put('/test/url', {
+      body: { data: { sample: 'params' } }
+    })
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      'http://localhost:3000/api/test/url',
+      expect.objectContaining({
+        method: 'PUT',
+        body: { data: { sample: 'params' } }
+      })
+    )
+
+    const data = await resp.json()
+    expect(data).toEqual({
+      data: { sample: 'response' },
+      status: 200
+    })
+  })
+
   it('performs a delete', async () => {
     fetchMock.delete('http://localhost:3000/api/test/url/1', {
       status: 204

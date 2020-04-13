@@ -6,8 +6,14 @@ import apiCore from './api-core'
 describe('api', () => {
   const getMock = jest.fn()
   const postMock = jest.fn()
+  const putMock = jest.fn()
   const deleteMock = jest.fn()
-  apiCore.mockReturnValue({ get: getMock, post: postMock, delete: deleteMock })
+  apiCore.mockReturnValue({
+    get: getMock,
+    post: postMock,
+    put: putMock,
+    delete: deleteMock
+  })
   const api = getApi()
 
   it('calls the whiskey index endpoint', () => {
@@ -24,6 +30,14 @@ describe('api', () => {
     const params = { data: { name: 'New Whiskey' } }
     api.createWhiskey(params)
     expect(postMock).toHaveBeenCalledWith('/whiskeys', {
+      body: JSON.stringify({ data: { name: 'New Whiskey' } })
+    })
+  })
+
+  it('calls the whiskey update endpoint', () => {
+    const params = { data: { name: 'New Whiskey' } }
+    api.updateWhiskey(4, params)
+    expect(putMock).toHaveBeenCalledWith('/whiskeys/4', {
       body: JSON.stringify({ data: { name: 'New Whiskey' } })
     })
   })
