@@ -26,6 +26,10 @@ export default function BaseLayout({ children }) {
     {
       path: '/',
       label: 'My Whiskeys'
+    },
+    {
+      path: '/whiskeys/new',
+      label: 'Add new whiskey'
     }
   ]
 

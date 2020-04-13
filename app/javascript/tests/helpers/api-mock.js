@@ -5,7 +5,8 @@ const mockApiEndpoint = (data = {}) =>
 
 const mockApi = {
   getWhiskeyIndex: mockApiEndpoint(WHISKEYS),
-  getWhiskey: mockApiEndpoint(WHISKEY)
+  getWhiskey: mockApiEndpoint(WHISKEY),
+  createWhiskey: mockApiEndpoint({ id: 1 })
 }
 
 export default mockApi
