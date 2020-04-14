@@ -50,7 +50,10 @@ RSpec.describe "Whiskeys", type: :request do
       {
         data: {
           name: 'My new whiskey',
-          description: 'Better than expected'
+          description: 'Better than expected',
+          taste: '4',
+          color: '3',
+          smokiness: '4'
         }
       }
     }

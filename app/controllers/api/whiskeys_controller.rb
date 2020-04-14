@@ -32,7 +32,13 @@ module Api
     end
 
     def create_params
-      params.require(:data).permit(:name, :description)
+      params.require(:data).permit(
+        :name,
+        :description,
+        :taste,
+        :color,
+        :smokiness
+      )
     end
 
     def set_whiskey
