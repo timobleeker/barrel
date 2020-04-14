@@ -5,14 +5,14 @@ describe('apiCore', () => {
   const api = getApiCore()
 
   it('performs a get', async () => {
-    fetchMock.get('http://localhost:3000/api/test/url', {
+    fetchMock.get('/api/test/url', {
       data: 'hello whiskey'
     })
 
     const resp = await api.get('/test/url')
 
     expect(fetchMock).toHaveBeenCalledWith(
-      'http://localhost:3000/api/test/url',
+      '/api/test/url',
       expect.objectContaining({
         method: 'GET'
       })
@@ -23,7 +23,7 @@ describe('apiCore', () => {
   })
 
   it('performs a post', async () => {
-    fetchMock.post('http://localhost:3000/api/test/url', {
+    fetchMock.post('/api/test/url', {
       status: 201,
       data: { sample: 'response' }
     })
@@ -33,7 +33,7 @@ describe('apiCore', () => {
     })
 
     expect(fetchMock).toHaveBeenCalledWith(
-      'http://localhost:3000/api/test/url',
+      '/api/test/url',
       expect.objectContaining({
         method: 'POST',
         body: { data: { sample: 'params' } }
@@ -48,7 +48,7 @@ describe('apiCore', () => {
   })
 
   it('performs a put', async () => {
-    fetchMock.put('http://localhost:3000/api/test/url', {
+    fetchMock.put('/api/test/url', {
       status: 200,
       data: { sample: 'response' }
     })
@@ -58,7 +58,7 @@ describe('apiCore', () => {
     })
 
     expect(fetchMock).toHaveBeenCalledWith(
-      'http://localhost:3000/api/test/url',
+      '/api/test/url',
       expect.objectContaining({
         method: 'PUT',
         body: { data: { sample: 'params' } }
@@ -73,14 +73,14 @@ describe('apiCore', () => {
   })
 
   it('performs a delete', async () => {
-    fetchMock.delete('http://localhost:3000/api/test/url/1', {
+    fetchMock.delete('/api/test/url/1', {
       status: 204
     })
 
     const resp = await api.delete('/test/url/1')
 
     expect(fetchMock).toHaveBeenCalledWith(
-      'http://localhost:3000/api/test/url/1',
+      '/api/test/url/1',
       expect.objectContaining({ method: 'DELETE' })
     )
 

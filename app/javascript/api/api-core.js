@@ -6,8 +6,8 @@ const getOptions = (options, method) => {
   }
 }
 
-const apiUrl = 'http://localhost:3000/api'
-const getUrl = (path) => `${apiUrl}${path}`
+const apiPath = '/api'
+const getUrl = (path) => `${apiPath}${path}`
 
 export default function getApiCore() {
   return {
