@@ -57,9 +57,11 @@ export default function BaseLayout({ children }) {
           </Container>
         </Toolbar>
       </AppBar>
-      <Container maxWidth="md" className={classes.container}>
-        {children}
-      </Container>
+      {children && (
+        <Container maxWidth="md" className={classes.container}>
+          {children}
+        </Container>
+      )}
     </Box>
   )
 }

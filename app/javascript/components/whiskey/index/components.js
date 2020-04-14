@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Grid,
@@ -49,6 +49,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 export const WhiskeyCard = ({ id, name, description, onDelete }) => {
+  const history = useHistory()
   const classes = useStyles()
   const [anchor, setAnchor] = useState()
   const [modalVisible, setModalVisible] = useState(false)
@@ -69,6 +70,10 @@ export const WhiskeyCard = ({ id, name, description, onDelete }) => {
   const handleDelete = () => {
     setModalVisible(false)
     onDelete()
+  }
+
+  const onClickEditOption = () => {
+    history.push(`/whiskeys/${id}/edit`)
   }
 
   return (
@@ -92,7 +97,7 @@ export const WhiskeyCard = ({ id, name, description, onDelete }) => {
                 open={Boolean(anchor)}
                 onClose={handleCloseMenu}
               >
-                <MenuItem disabled>Edit</MenuItem>
+                <MenuItem onClick={onClickEditOption}>Edit</MenuItem>
                 <MenuItem onClick={onClickDeleteOption}>Delete</MenuItem>
               </Menu>
             </Fragment>

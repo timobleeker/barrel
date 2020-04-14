@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import {
   Button,
   Card,
@@ -11,12 +11,11 @@ import {
 import { Close } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
 
-import { Link, useParams } from 'react-router-dom'
-import { camelizeKeys } from 'humps'
+import { Link, useParams, useLocation } from 'react-router-dom'
 
 import BaseLayout from '../../layouts/base'
-import getApi from '../../../api'
 import { timeAgoInWords } from '../../../utils/date'
+import useWhiskey from '../hooks/use-whiskey'
 
 const useStyles = makeStyles(() => ({
   edit: {
@@ -26,46 +25,39 @@ const useStyles = makeStyles(() => ({
 
 const Show = () => {
   const classes = useStyles()
-  const api = getApi()
   const { id } = useParams()
-  const [whiskey, setWhiskey] = useState({})
-
-  async function fetchData() {
-    const resp = await api.getWhiskey(id)
-    if (resp.ok) {
-      const { data } = await resp.json()
-      setWhiskey(camelizeKeys(data))
-    } else {
-      // TODO handle errors
-    }
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [id])
+  const { pathname } = useLocation()
+  const { whiskey } = useWhiskey(id)
 
   return (
     <BaseLayout>
-      <Card>
-        <CardHeader
-          title={whiskey.name}
-          subheader={`First enjoyed ${timeAgoInWords(whiskey.createdAt)}`}
-          action={
-            <IconButton component={Link} to="/">
-              <Close />
-            </IconButton>
-          }
-        />
-        <CardContent>
-          <Typography color="textSecondary">Description</Typography>
-          <Typography>{whiskey.description}</Typography>
-        </CardContent>
-        <CardActions>
-          <Button disabled className={classes.edit} color="primary">
-            Edit
-          </Button>
-        </CardActions>
-      </Card>
+      {whiskey.id && (
+        <Card>
+          <CardHeader
+            title={whiskey.name}
+            subheader={`First enjoyed ${timeAgoInWords(whiskey.createdAt)}`}
+            action={
+              <IconButton component={Link} to="/">
+                <Close />
+              </IconButton>
+            }
+          />
+          <CardContent>
+            <Typography color="textSecondary">Description</Typography>
+            <Typography>{whiskey.description}</Typography>
+          </CardContent>
+          <CardActions>
+            <Button
+              component={Link}
+              to={`${pathname}/edit`}
+              className={classes.edit}
+              color="primary"
+            >
+              Edit
+            </Button>
+          </CardActions>
+        </Card>
+      )}
     </BaseLayout>
   )
 }

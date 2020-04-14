@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import WhiskeyIndex from '../components/whiskey/index'
 import WhiskeyShow from '../components/whiskey/show'
 import WhiskeyNew from '../components/whiskey/new'
+import WhiskeyEdit from '../components/whiskey/edit'
 
 export default function Routes() {
   return (
@@ -12,6 +13,9 @@ export default function Routes() {
       <Switch>
         <Route path="/whiskeys/new">
           <WhiskeyNew />
+        </Route>
+        <Route path="/whiskeys/:id/edit">
+          <WhiskeyEdit />
         </Route>
         <Route path="/whiskeys/:id">
           <WhiskeyShow />
