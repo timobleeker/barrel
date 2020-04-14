@@ -18,11 +18,15 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Form = ({ formObject = {}, submitHandler }) => {
+const Form = ({
+  formObject = {},
+  errors = {},
+  submitHandler,
+  onResetFieldError
+}) => {
   const classes = useStyles()
 
   const initialState = { name: '', description: '', ...formObject }
-
   const [handleSubmit, handleChange, inputs] = useForm(
     initialState,
     submitHandler
@@ -38,11 +42,13 @@ const Form = ({ formObject = {}, submitHandler }) => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <TextField
-                required
+                error={Boolean(errors.name)}
+                helperText={errors.name}
                 fullWidth
                 label="Name"
                 name="name"
                 variant="outlined"
+                onClick={() => onResetFieldError('name')}
                 onChange={handleChange}
                 value={inputs.name}
               />

@@ -22,6 +22,12 @@ describe('Whiskey Form', () => {
       )
     })
 
+    it('shows errors', () => {
+      expect(wrapper.find('.MuiOutlinedInput-root.Mui-error')).not.toExist()
+      wrapper = mount(<Form errors={{ name: ["Can't be blank"] }} />)
+      expect(wrapper.find('.MuiOutlinedInput-root.Mui-error')).toExist()
+    })
+
     it('submits the form', () => {
       let nameInput = wrapper.find('input[name="name"]')
       nameInput.simulate('change', {
