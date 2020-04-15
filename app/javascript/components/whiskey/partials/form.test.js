@@ -45,7 +45,10 @@ describe('Whiskey Form', () => {
 
       expect(submitMock).toHaveBeenCalledWith({
         name: 'New Name',
-        description: 'New Description'
+        description: 'New Description',
+        taste: 3,
+        color: 3,
+        smokiness: 3
       })
     })
   })

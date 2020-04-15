@@ -33,5 +33,11 @@ describe('Whiskey Show', () => {
     expect(wrapper.find('div.MuiCardContent-root')).toIncludeText(
       WHISKEY.description
     )
+
+    expect(wrapper.find('div#taste-rating').prop('aria-valuenow')).toEqual(60) // rated: 3
+    expect(wrapper.find('div#color-rating').prop('aria-valuenow')).toEqual(40) // rated: 2
+    expect(wrapper.find('div#smokiness-rating').prop('aria-valuenow')).toEqual(
+      80
+    ) // rated: 4
   })
 })

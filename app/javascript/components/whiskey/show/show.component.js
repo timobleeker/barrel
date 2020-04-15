@@ -5,8 +5,11 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Divider,
+  Grid,
   Typography,
-  IconButton
+  IconButton,
+  LinearProgress
 } from '@material-ui/core'
 import { Close } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
@@ -20,6 +23,12 @@ import useWhiskey from '../hooks/use-whiskey'
 const useStyles = makeStyles(() => ({
   edit: {
     marginLeft: 'auto'
+  },
+  divider: {
+    margin: '20px 0'
+  },
+  progress: {
+    height: 10
   }
 }))
 
@@ -28,6 +37,8 @@ const Show = () => {
   const { id } = useParams()
   const { pathname } = useLocation()
   const { whiskey } = useWhiskey(id)
+
+  const ratingInPercentage = (rating) => (100 / 5) * rating
 
   return (
     <BaseLayout>
@@ -44,7 +55,37 @@ const Show = () => {
           />
           <CardContent>
             <Typography color="textSecondary">Description</Typography>
-            <Typography>{whiskey.description}</Typography>
+            <Typography gutterBottom>{whiskey.description}</Typography>
+            <Divider classes={{ root: classes.divider }} />
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={4}>
+                <Typography color="textSecondary">Taste</Typography>
+                <LinearProgress
+                  id="taste-rating"
+                  classes={{ root: classes.progress }}
+                  variant="determinate"
+                  value={ratingInPercentage(whiskey.taste)}
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography color="textSecondary">Color</Typography>
+                <LinearProgress
+                  id="color-rating"
+                  classes={{ root: classes.progress }}
+                  variant="determinate"
+                  value={ratingInPercentage(whiskey.color)}
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <Typography color="textSecondary">Smokiness</Typography>
+                <LinearProgress
+                  id="smokiness-rating"
+                  classes={{ root: classes.progress }}
+                  variant="determinate"
+                  value={ratingInPercentage(whiskey.smokiness)}
+                />
+              </Grid>
+            </Grid>
           </CardContent>
           <CardActions>
             <Button

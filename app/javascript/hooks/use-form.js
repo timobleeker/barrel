@@ -8,8 +8,12 @@ const useForm = (initialState, callback) => {
     callback(inputs)
   }
 
-  const handleChange = (e) => {
-    setInputs({ ...inputs, [e.target.name]: e.target.value })
+  const handleChange = (e, value, name) => {
+    if (value && name) {
+      setInputs({ ...inputs, [name]: value })
+    } else {
+      setInputs({ ...inputs, [e.target.name]: e.target.value })
+    }
   }
 
   return [handleSubmit, handleChange, inputs]

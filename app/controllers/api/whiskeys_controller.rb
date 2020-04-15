@@ -3,7 +3,7 @@ module Api
     before_action :set_whiskey, only: [:show, :update, :destroy]
 
     def index
-      whiskeys = Whiskey.all
+      whiskeys = Whiskey.order(:created_at)
       json_response(whiskeys)
     end
 
