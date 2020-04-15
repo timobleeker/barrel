@@ -7,6 +7,8 @@ import getApi from '../../../api'
 
 const Index = () => {
   const [whiskeys, setWhiskeys] = useState([])
+  const [filteredWhiskeys, setFilteredWhiskeys] = useState([])
+  const [query, setQuery] = useState('')
   const api = getApi()
 
   const fetchData = async () => {
@@ -14,8 +16,11 @@ const Index = () => {
     if (resp.ok) {
       const { data } = await resp.json()
       setWhiskeys(data)
+      setFilteredWhiskeys(data)
     } else {
       // TODO handle errors
+      const { errors } = await resp.json()
+      console.log(errors)
     }
   }
 
@@ -25,6 +30,8 @@ const Index = () => {
       fetchData()
     } else {
       // TODO handle errors
+      const { errors } = await resp.json()
+      console.log(errors)
     }
   }
 
@@ -32,10 +39,28 @@ const Index = () => {
     fetchData()
   }, [])
 
+  const filterWhiskeys = () => {
+    let filtered = whiskeys
+    if (query.length) {
+      filtered = whiskeys.filter(
+        ({ name, description }) =>
+          Boolean(name.match(new RegExp(query, 'i'))) ||
+          Boolean(description.match(new RegExp(query, 'i')))
+      )
+    }
+    setFilteredWhiskeys(filtered)
+  }
+
+  useEffect(() => {
+    filterWhiskeys()
+  }, [query])
+
+  const useSearch = () => [query, setQuery]
+
   return (
-    <BaseLayout>
+    <BaseLayout useSearch={useSearch}>
       <Grid container spacing={3}>
-        {whiskeys.map((whiskey, index) => (
+        {filteredWhiskeys.map((whiskey, index) => (
           <WhiskeyCard
             key={index}
             {...whiskey}

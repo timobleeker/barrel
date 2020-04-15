@@ -30,13 +30,12 @@ describe('Whiskey Form', () => {
 
     it('submits the form', () => {
       let nameInput = wrapper.find('input[name="name"]')
-      nameInput.simulate('change', {
-        target: { name: 'name', value: 'New Name' }
-      })
+      nameInput.getDOMNode().value = 'New Name'
+      nameInput.simulate('change')
 
-      wrapper.find('textarea[name="description"]').simulate('change', {
-        target: { name: 'description', value: 'New Description' }
-      })
+      const descriptionInput = wrapper.find('textarea[name="description"]')
+      descriptionInput.getDOMNode().value = 'New Description'
+      descriptionInput.simulate('change')
 
       nameInput = wrapper.find('input[name="name"]')
       expect(nameInput.prop('value')).toEqual('New Name')

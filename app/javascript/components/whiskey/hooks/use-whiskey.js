@@ -13,6 +13,8 @@ const useWhiskey = (id) => {
       setWhiskey(camelizeKeys(data))
     } else {
       // TODO handle errors
+      const { errors } = await resp.json()
+      console.log(errors)
     }
   }
 

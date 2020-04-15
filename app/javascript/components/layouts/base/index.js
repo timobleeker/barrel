@@ -1,16 +1,18 @@
 import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import {
   AppBar,
   Box,
   Container,
+  Grid,
   Toolbar,
   Typography,
   Tabs,
   Tab
 } from '@material-ui/core'
-import { Link, useLocation } from 'react-router-dom'
-
 import { makeStyles } from '@material-ui/core/styles'
+
+import SearchBar from '../../search-bar'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -18,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-export default function BaseLayout({ children }) {
+export default function BaseLayout({ useSearch, children }) {
   const classes = useStyles()
   const { pathname } = useLocation()
 
@@ -42,19 +44,22 @@ export default function BaseLayout({ children }) {
       <AppBar color="primary" position="static">
         <Toolbar>
           <Typography variant="h6">Barrel</Typography>
-          <Container>
-            <Tabs centered value={tabValue}>
-              {tabs.map(({ path, label }, index) => (
-                <Tab
-                  key={index}
-                  value={path}
-                  label={label}
-                  component={Link}
-                  to={path}
-                />
-              ))}
-            </Tabs>
-          </Container>
+          <Grid container>
+            <Grid item>
+              <Tabs value={tabValue}>
+                {tabs.map(({ path, label }, index) => (
+                  <Tab
+                    key={index}
+                    value={path}
+                    label={label}
+                    component={Link}
+                    to={path}
+                  />
+                ))}
+              </Tabs>
+            </Grid>
+          </Grid>
+          {Boolean(useSearch) && <SearchBar useSearch={useSearch} />}
         </Toolbar>
       </AppBar>
       {children && (

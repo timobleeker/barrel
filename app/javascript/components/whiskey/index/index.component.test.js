@@ -46,4 +46,13 @@ describe('Whiskey Index', () => {
     expect(mockApi.deleteWhiskey).toHaveBeenCalled()
     expect(mockApi.getWhiskeyIndex).toHaveBeenCalledTimes(1)
   })
+
+  it('can filter by search query', () => {
+    const searchInput = wrapper.find('input#page-search')
+    searchInput.getDOMNode().value = 'Other whiskey'
+    searchInput.simulate('change')
+
+    expect(wrapper.find('WhiskeyCard').length).toEqual(1)
+    expect(wrapper.find('WhiskeyCard')).toIncludeText('My Other Whiskey')
+  })
 })

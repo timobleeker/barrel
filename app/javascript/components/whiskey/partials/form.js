@@ -88,7 +88,7 @@ const Form = ({
                 Taste
               </Typography>
               <Slider
-                value={inputs.taste}
+                value={Number(inputs.taste)}
                 onChange={(e, v) => handleChange(e, v, 'taste')}
                 name="taste"
                 max={5}
@@ -102,7 +102,7 @@ const Form = ({
                 Color
               </Typography>
               <Slider
-                value={inputs.color}
+                value={Number(inputs.color)}
                 onChange={(e, v) => handleChange(e, v, 'color')}
                 max={5}
                 min={1}
@@ -115,7 +115,7 @@ const Form = ({
                 Smokiness
               </Typography>
               <Slider
-                value={inputs.smokiness}
+                value={Number(inputs.smokiness)}
                 onChange={(e, v) => handleChange(e, v, 'smokiness')}
                 max={5}
                 min={1}

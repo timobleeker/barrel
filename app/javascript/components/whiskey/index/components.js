@@ -14,7 +14,8 @@ import {
   MenuItem,
   Dialog,
   DialogTitle,
-  DialogActions
+  DialogActions,
+  Divider
 } from '@material-ui/core'
 import { MoreVert } from '@material-ui/icons'
 
@@ -107,6 +108,7 @@ export const WhiskeyCard = ({ id, name, description, onDelete }) => {
         <CardContent>
           <Typography noWrap>{description}</Typography>
         </CardContent>
+        <Divider />
         <CardActions>
           <Button
             component={Link}

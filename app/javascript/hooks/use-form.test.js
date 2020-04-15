@@ -30,9 +30,8 @@ describe('Hooks: useForm', () => {
     const wrapper = mount(<TestComponent callbackSpy={callbackSpy} />)
     let myInput = wrapper.find('#my-input')
 
-    myInput.simulate('change', {
-      target: { name: 'myInput', value: 'New Value' }
-    })
+    myInput.getDOMNode().value = 'New Value'
+    myInput.simulate('change')
 
     myInput = wrapper.find('#my-input')
     expect(myInput.prop('value')).toEqual('New Value')
