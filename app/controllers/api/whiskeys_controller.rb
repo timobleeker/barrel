@@ -7,6 +7,12 @@ module Api
       json_response(whiskeys)
     end
 
+    def search
+      handler = SearchParamHandler.new(Whiskey, search_params)
+      whiskeys = handler.process
+      json_response(whiskeys)
+    end
+
     def show
       json_response(@whiskey)
     end
@@ -39,6 +45,10 @@ module Api
         :color,
         :smokiness
       )
+    end
+
+    def search_params
+      params.permit(:name, :description, :taste, :color, :smokiness)
     end
 
     def set_whiskey

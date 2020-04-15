@@ -20,6 +20,25 @@ RSpec.describe "Whiskeys", type: :request do
     end
   end
 
+  describe 'GET /api/whiskeys/search' do
+    let!(:my_whiskey) { create :whiskey, name: 'my fancy drink', taste: 3 }
+    let!(:your_whiskey) { create :whiskey, name: 'your fancy drink', taste: 2 }
+
+    before do
+      query = { name: 'fancy', taste: 3 }.to_query
+      get "/api/whiskeys/search?#{query}"
+    end
+
+    it 'returns filtered whiskeys' do
+      expect(response).to have_http_status(200)
+      expect(data).not_to be_empty
+      expect(data.length).to eq(1)
+      expect(data[0]).to match(
+        a_hash_including({'name' => my_whiskey.name})
+      )
+    end
+  end
+
   describe 'GET /api/whiskeys/:id' do
     before { get "/api/whiskeys/#{whiskey_id}" }
 
