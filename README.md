@@ -16,6 +16,11 @@ After cloning it locally, run `bundle install`, `yarn install` followed by `rail
 
 To start the app, run `rails s`. Webpack will compile and start the app on `localhost:3000`.
 
+## Testing
+To run eslint and javascript tests: `yarn test`
+
+To run rspec: `bundle exec rspec`
+
 ## Features
 
 ### Viewing whiskeys
