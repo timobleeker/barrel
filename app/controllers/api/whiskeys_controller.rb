@@ -48,7 +48,13 @@ module Api
     end
 
     def search_params
-      params.permit(:name, :description, :taste, :color, :smokiness)
+      params.except(:format, :whiskey).permit(
+        :name,
+        :description,
+        :taste,
+        :color,
+        :smokiness
+      )
     end
 
     def set_whiskey
