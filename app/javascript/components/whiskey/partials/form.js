@@ -24,7 +24,9 @@ const Form = ({
   formObject = {},
   errors = {},
   submitHandler,
-  onResetFieldError
+  onResetFieldError,
+  title,
+  submitName
 }) => {
   const classes = useStyles()
 
@@ -40,8 +42,6 @@ const Form = ({
     initialState,
     submitHandler
   )
-
-  const title = formObject.id ? 'Edit Whiskey' : 'Add new whiskey'
 
   const marks = [
     { value: 1, label: '1' },
@@ -133,7 +133,7 @@ const Form = ({
             type="submit"
             className={classes.saveButton}
           >
-            Save
+            {submitName || 'Save'}
           </Button>
         </CardActions>
       </form>

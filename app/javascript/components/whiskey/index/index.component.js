@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { camelizeKeys } from 'humps'
 import { Grid } from '@material-ui/core'
 
 import BaseLayout from '../../layouts/base'
@@ -15,8 +16,9 @@ const Index = () => {
     const resp = await api.getWhiskeyIndex()
     if (resp.ok) {
       const { data } = await resp.json()
-      setWhiskeys(data)
-      setFilteredWhiskeys(data)
+      const camelized = camelizeKeys(data)
+      setWhiskeys(camelized)
+      setFilteredWhiskeys(camelized)
     } else {
       // TODO handle errors
       const { errors } = await resp.json()

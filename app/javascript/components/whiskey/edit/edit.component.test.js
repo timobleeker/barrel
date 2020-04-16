@@ -30,7 +30,7 @@ describe('Edit whiskey form', () => {
 
   it('renders', () => {
     expect(wrapper.find('Edit')).toExist()
-    expect(wrapper.find('div.MuiCardHeader-root')).toIncludeText('Edit Whiskey')
+    expect(wrapper.find('div.MuiCardHeader-root')).toIncludeText('Edit whiskey')
   })
 
   it('redirects to updated whiskey', async () => {

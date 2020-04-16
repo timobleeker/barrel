@@ -6,6 +6,7 @@ import WhiskeyIndex from '../components/whiskey/index'
 import WhiskeyShow from '../components/whiskey/show'
 import WhiskeyNew from '../components/whiskey/new'
 import WhiskeyEdit from '../components/whiskey/edit'
+import WhiskeySearch from '../components/whiskey/search'
 
 export default function Routes() {
   return (
@@ -13,6 +14,9 @@ export default function Routes() {
       <Switch>
         <Route path="/whiskeys/new">
           <WhiskeyNew />
+        </Route>
+        <Route path="/whiskeys/search">
+          <WhiskeySearch />
         </Route>
         <Route path="/whiskeys/:id/edit">
           <WhiskeyEdit />

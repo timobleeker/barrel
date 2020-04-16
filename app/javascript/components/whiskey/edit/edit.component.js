@@ -30,6 +30,7 @@ const Edit = () => {
     <BaseLayout>
       {whiskey.id && (
         <Form
+          title="Edit whiskey"
           formObject={whiskey}
           submitHandler={putData}
           errors={errors}

@@ -99,7 +99,9 @@ export const WhiskeyCard = ({ id, name, description, onDelete }) => {
                 onClose={handleCloseMenu}
               >
                 <MenuItem onClick={onClickEditOption}>Edit</MenuItem>
-                <MenuItem onClick={onClickDeleteOption}>Delete</MenuItem>
+                {Boolean(onDelete) && (
+                  <MenuItem onClick={onClickDeleteOption}>Delete</MenuItem>
+                )}
               </Menu>
             </Fragment>
           }

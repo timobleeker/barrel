@@ -26,6 +26,7 @@ const New = () => {
   return (
     <BaseLayout>
       <Form
+        title="Add new whiskey"
         submitHandler={postData}
         errors={errors}
         onResetFieldError={resetFieldError}

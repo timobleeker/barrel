@@ -15,6 +15,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import SearchBar from '../../search-bar'
 
 const useStyles = makeStyles((theme) => ({
+  header: {
+    marginRight: 40
+  },
   container: {
     paddingTop: theme.spacing(3)
   }
@@ -32,6 +35,10 @@ export default function BaseLayout({ useSearch, children }) {
     {
       path: '/whiskeys/new',
       label: 'Add new whiskey'
+    },
+    {
+      path: '/whiskeys/search',
+      label: 'Advanced Search'
     }
   ]
 
@@ -43,7 +50,9 @@ export default function BaseLayout({ useSearch, children }) {
     <Box>
       <AppBar color="primary" position="static">
         <Toolbar>
-          <Typography variant="h6">Barrel</Typography>
+          <Typography classes={{ root: classes.header }} variant="h6">
+            Barrel
+          </Typography>
           <Grid container>
             <Grid item>
               <Tabs value={tabValue}>

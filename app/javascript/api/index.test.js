@@ -21,6 +21,11 @@ describe('api', () => {
     expect(getMock).toHaveBeenCalledWith('/whiskeys')
   })
 
+  it('calls the whiskey search endpoint', () => {
+    api.getWhiskeySearch({ name: 'My Whiskey' })
+    expect(getMock).toHaveBeenCalledWith('/whiskeys/search?name=My+Whiskey')
+  })
+
   it('calls the whiskey show endpoint', () => {
     api.getWhiskey(4)
     expect(getMock).toHaveBeenCalledWith('/whiskeys/4')

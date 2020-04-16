@@ -9,6 +9,10 @@ export default function getApi() {
     getWhiskeyIndex() {
       return apiCore.get(whiskeyEndpoint)
     },
+    getWhiskeySearch(searchParams) {
+      const queryString = new URLSearchParams(searchParams).toString()
+      return apiCore.get(`${whiskeyEndpoint}/search?${queryString}`)
+    },
     getWhiskey(id) {
       return apiCore.get(`${whiskeyEndpoint}/${id}`)
     },
